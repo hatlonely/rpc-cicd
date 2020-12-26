@@ -1,4 +1,5 @@
 binary=cicd
+user=hatlonely
 repository=rpc-cicd
 version=$(shell git describe --tags | awk '{print(substr($$0,2,length($$0)))}')
 export GOPROXY=https://goproxy.cn
@@ -45,18 +46,19 @@ submodule:
 
 .PHONY: image
 image:
-	docker build --tag=hatlonely/${repository}:${version} .
+	docker build --tag=${user}/${repository}:${version} .
 
-.PHONY: kubeenv
-kubeenv:
-	kubectl run -n test dind --image=docker:dind --restart=Never --overrides='{"spec": {"containers": [{"name": "dind", "image": "docker:dind", "securityContext": {"privileged": true} }]}}'
+.PHONY: k8senv
+k8senv:
+	#kubectl run -n test dind --image=docker:dind --restart=Never --overrides='{"spec": {"containers": [{"name": "dind", "image": "docker:dind", "securityContext": {"privileged": true} }]}}'
+	kubectl run -n test dind --privileged --image=docker:dind --restart=Never
 
-.PHONY: kubebuild
-kubebuild:
-	kubectl exec -n test dind -ti -- rm -rf /data/src/${gituser}/${repository}
-	kubectl exec -n test dind -ti -- mkdir -p /data/src/${gituser}/${repository}
-	kubectl cp . test/dind:/data/src/${gituser}/${repository}
-	kubectl exec -n test dind -ti -- /bin/sh -c "cd /data/src/${gituser}/${repository} && make image"
+.PHONY: k8simage
+k8simage:
+	kubectl exec -n test dind -ti -- rm -rf /go/src/${user}/${repository}
+	kubectl exec -n test dind -ti -- mkdir -p /go/src/${user}/
+	kubectl cp . test/dind:/go/src/${user}/${repository}/
+	kubectl exec -n test dind -ti -- /bin/sh -c "cd /go/src/${user}/${repository} && make image"
 
 third/swagger-codegen-cli.jar:
 	mkdir -p third

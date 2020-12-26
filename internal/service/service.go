@@ -1,7 +1,7 @@
 package service
 
 import (
-	"github.com/hatlonely/go-rpc/rpc-cicd/internal/storage"
+	"github.com/hatlonely/rpc-cicd/internal/storage"
 )
 
 func NewCICDServiceWithOptions(storage *storage.CICDStorage, options *Options) (*CICDService, error) {

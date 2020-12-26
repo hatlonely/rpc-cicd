@@ -15,8 +15,8 @@ import (
 	"github.com/hatlonely/go-kit/logger"
 	"github.com/pkg/errors"
 
-	"github.com/hatlonely/go-rpc/rpc-cicd/api/gen/go/api"
-	"github.com/hatlonely/go-rpc/rpc-cicd/internal/storage"
+	"github.com/hatlonely/rpc-cicd/api/gen/go/api"
+	"github.com/hatlonely/rpc-cicd/internal/storage"
 )
 
 type CICDExecutor struct {

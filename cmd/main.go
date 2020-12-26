@@ -10,6 +10,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/hatlonely/go-kit/bind"
+	"github.com/hatlonely/go-kit/cli"
 	"github.com/hatlonely/go-kit/config"
 	"github.com/hatlonely/go-kit/flag"
 	"github.com/hatlonely/go-kit/logger"
@@ -17,11 +18,10 @@ import (
 	"github.com/hatlonely/go-kit/rpcx"
 	"google.golang.org/grpc"
 
-	"github.com/hatlonely/go-rpc/rpc-cicd/api/gen/go/api"
-	"github.com/hatlonely/go-rpc/rpc-cicd/internal/cli"
-	"github.com/hatlonely/go-rpc/rpc-cicd/internal/executor"
-	"github.com/hatlonely/go-rpc/rpc-cicd/internal/service"
-	"github.com/hatlonely/go-rpc/rpc-cicd/internal/storage"
+	"github.com/hatlonely/rpc-cicd/api/gen/go/api"
+	"github.com/hatlonely/rpc-cicd/internal/executor"
+	"github.com/hatlonely/rpc-cicd/internal/service"
+	"github.com/hatlonely/rpc-cicd/internal/storage"
 )
 
 var Version string

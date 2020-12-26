@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/hatlonely/go-rpc/rpc-cicd/api/gen/go/api"
+	"github.com/hatlonely/rpc-cicd/api/gen/go/api"
 )
 
 func (s *CICDService) GetJob(ctx context.Context, req *api.GetJobReq) (*api.Job, error) {

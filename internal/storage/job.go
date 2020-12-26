@@ -12,7 +12,7 @@ import (
 	mopt "go.mongodb.org/mongo-driver/mongo/options"
 	"google.golang.org/grpc/codes"
 
-	"github.com/hatlonely/go-rpc/rpc-cicd/api/gen/go/api"
+	"github.com/hatlonely/rpc-cicd/api/gen/go/api"
 )
 
 const JobStatusRunning = "Running"

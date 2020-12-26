@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/hatlonely/go-rpc/rpc-cicd/api/gen/go/api"
-	"github.com/hatlonely/go-rpc/rpc-cicd/internal/storage"
+	"github.com/hatlonely/rpc-cicd/api/gen/go/api"
+	"github.com/hatlonely/rpc-cicd/internal/storage"
 )
 
 func (s *CICDService) RunTask(ctx context.Context, req *api.RunTaskReq) (*api.RunTaskRes, error) {

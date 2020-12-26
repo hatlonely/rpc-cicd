@@ -8,7 +8,7 @@ import (
 
 	"github.com/hatlonely/go-kit/cli"
 
-	"github.com/hatlonely/go-rpc/rpc-cicd/internal/storage"
+	"github.com/hatlonely/rpc-cicd/internal/storage"
 )
 
 func TestCICDExecutor(t *testing.T) {

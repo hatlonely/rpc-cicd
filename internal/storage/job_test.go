@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hatlonely/go-kit/cli"
 	. "github.com/smartystreets/goconvey/convey"
 	"go.mongodb.org/mongo-driver/bson"
 
-	"github.com/hatlonely/go-kit/cli"
 	"github.com/hatlonely/rpc-cicd/api/gen/go/api"
 )
 

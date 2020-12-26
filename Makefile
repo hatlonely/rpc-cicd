@@ -1,17 +1,28 @@
 binary=cicd
-dockeruser=hatlonely
-gituser=hatlonely
-repository=go-rpc-cicd
-version=1.0.0
+repository=rpc-cicd
+version=$(shell git describe --tags | awk '{print(substr($$0,2,length($$0)))}')
 export GOPROXY=https://goproxy.cn
 
+define BUILD_VERSION
+  version: $(shell git describe --tags)
+gitremote: $(shell git remote -v | grep fetch | awk '{print $$2}')
+   commit: $(shell git rev-parse HEAD)
+ datetime: $(shell date '+%Y-%m-%d %H:%M:%S')
+ hostname: $(shell hostname):$(shell pwd)
+goversion: $(shell go version)
+endef
+export BUILD_VERSION
+
 .PHONY: build
-build: cmd/main.go Makefile vendor
-	mkdir -p build/bin
-	go build -ldflags "-X 'main.Version=`sh scripts/version.sh`'" cmd/main.go && mv main build/bin/${binary} && cp -r config build/
+build: cmd/main.go $(wildcard internal/*/*.go) Makefile vendor
+	mkdir -p build/bin && mkdir -p build/config
+	go build -ldflags "-X 'main.Version=$$BUILD_VERSION'" -o build/bin/${binary} cmd/main.go
+	cp config/app.json build/config/ && cp config/base.json build/config/
+
+clean:
+	rm -rf build
 
 vendor: go.mod go.sum
-	@echo "install golang dependency"
 	go mod tidy
 	go mod vendor
 
@@ -27,23 +38,14 @@ codegen: api/cicd.proto third/openapi-generator-cli.jar
 	# openapi-generator-cli 5.0.0-beta3 数组为 const 无法修改
 	java -jar third/openapi-generator-cli.jar generate -i api/gen/swagger/api/cicd.swagger.json -g dart -o api/gen/dart
 
-.PHONY: dockerenv
-dockerenv:
-	if [ -z "$(shell docker network ls --filter name=testnet -q)" ]; then \
-		docker network create -d bridge testnet; \
-	fi
-	if [ -z "$(shell docker ps -a --filter name=go-build-env -q)" ]; then \
-		docker run --name go-build-env --network testnet -d hatlonely/go-build-env:1.0.0 tail -f /dev/null; \
-	fi
+.PHONY: submodule
+submodule:
+	git submodule init
+	git submodule update
 
-.PHONY: cleandockerenv
-cleandockerenv:
-	if [ ! -z "$(shell docker ps -a --filter name=go-build-env -q)" ]; then \
-		docker stop go-build-env  && docker rm go-build-env; \
-	fi
-	if [ ! -z "$(shell docker network ls --filter name=testnet -q)" ]; then \
-		docker network rm testnet; \
-	fi
+.PHONY: image
+image:
+	docker build --tag=hatlonely/${repository}:${version} .
 
 .PHONY: kubeenv
 kubeenv:
@@ -55,16 +57,6 @@ kubebuild:
 	kubectl exec -n test dind -ti -- mkdir -p /data/src/${gituser}/${repository}
 	kubectl cp . test/dind:/data/src/${gituser}/${repository}
 	kubectl exec -n test dind -ti -- /bin/sh -c "cd /data/src/${gituser}/${repository} && make image"
-
-.PHONY: image
-image: dockerenv
-	rm -rf docker
-	docker exec go-build-env rm -rf /data/src/${gituser}/${repository}
-	docker exec go-build-env mkdir -p /data/src/${gituser}/${repository}
-	docker cp . go-build-env:/data/src/${gituser}/${repository}
-	docker exec go-build-env bash -c "cd /data/src/${gituser}/${repository} && make build"
-	docker cp go-build-env:/data/src/${gituser}/${repository}/build/ docker/
-	docker build --tag=${dockeruser}/${repository}:${version} .
 
 third/swagger-codegen-cli.jar:
 	mkdir -p third

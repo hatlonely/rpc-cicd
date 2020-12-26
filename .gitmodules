@@ -1,0 +1,6 @@
+[submodule "rpc-api"]
+	path = rpc-api
+	url = git@gitlab.alibaba-inc.com:hatlonely.hl/rpc-api.git
+[submodule "op-deploy"]
+	path = op-deploy
+	url = git@gitlab.alibaba-inc.com:hatlonely.hl/op-deploy.git

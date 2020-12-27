@@ -1,13 +1,20 @@
-FROM golang:1.14 AS build
+FROM golang:1.14-alpine AS build
 
 COPY . /go/src/
 WORKDIR /go/src/
+RUN apk add make
+RUN apk add git
 RUN make build
 
-FROM centos:centos7
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN echo "Asia/Shanghai" >> /etc/timezone
+FROM docker:20.10.1-dind
+
+RUN apk update \
+    && apk add tzdata \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone
 
 COPY --from=build /go/src/build /work/rpc-cicd
+COPY entrypoint.sh /work/rpc-cicd
 WORKDIR /work/rpc-cicd
-CMD [ "bin/cicd", "-c", "config/app.json" ]
+ENTRYPOINT ["sh"]
+CMD [ "entrypoint.sh" ]

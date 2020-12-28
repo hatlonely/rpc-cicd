@@ -6,9 +6,10 @@ image:
   repository: "${REGISTRY_SERVER}/${REGISTRY_NAMESPACE}/${IMAGE_REPOSITORY}"
   tag: "${IMAGE_TAG}"
   pullPolicy: Always
+  pullSecret: "${IMAGE_PULL_SECRET}"
 
-imagePullSecrets:
-  name: "${IMAGE_PULL_SECRET}"
+container:
+  runAsRoot: true
 
 ingress:
   host: "${INGRESS_HOST}"
@@ -60,6 +61,32 @@ config:
             "type": "ElasticSearch",
             "elasticSearchWriter": {
               "index": "grpc",
+              "idField": "requestID",
+              "timeout": "200ms",
+              "msgChanLen": 200,
+              "workerNum": 2,
+              "elasticSearch": {
+                "uri": "http://${ELASTICSEARCH_SERVER}"
+              }
+            }
+          }]
+        },
+        "exec": {
+          "level": "Info",
+          "flatMap": true,
+          "writers": [{
+            "type": "RotateFile",
+            "rotateFileWriter": {
+              "filename": "log/${NAME}.exec",
+              "maxAge": "24h",
+              "formatter": {
+                "type": "Json"
+              }
+            }
+          }, {
+            "type": "ElasticSearch",
+            "elasticSearchWriter": {
+              "index": "exec",
               "idField": "requestID",
               "timeout": "200ms",
               "msgChanLen": 200,

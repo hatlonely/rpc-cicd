@@ -74,7 +74,7 @@ func main() {
 	}
 
 	if options.ConfigPath == "" {
-		options.ConfigPath = "config/go-rpc-cicd.json"
+		options.ConfigPath = "config/app.json"
 	}
 	cfg, err := config.NewConfigWithSimpleFile(options.ConfigPath)
 	Must(err)
@@ -122,7 +122,7 @@ func main() {
 		context.Background(), mux, fmt.Sprintf("0.0.0.0:%v", options.Grpc.Port), []grpc.DialOption{grpc.WithInsecure()},
 	))
 
-	httpServer := http.Server{Addr: fmt.Sprintf(":%v", options.Http.Port), Handler: mux}
+	httpServer := http.Server{Addr: fmt.Sprintf(":%v", options.Http.Port), Handler: rpcx.CORSWithOptions(mux, &options.Http.Cors)}
 	go func() {
 		if err := httpServer.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			infoLog.Warnf("httpServer.ListenAndServe, err: [%v]", err)

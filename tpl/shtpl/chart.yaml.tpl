@@ -12,6 +12,7 @@ container:
   runAsRoot: true
 
 ingress:
+  enable: true
   host: "${INGRESS_HOST}"
   secretName: "${INGRESS_SECRET}"
 

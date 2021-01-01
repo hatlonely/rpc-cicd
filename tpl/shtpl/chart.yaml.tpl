@@ -28,7 +28,7 @@ config:
         "port": 6080
       },
       "mongo": {
-        "uri": "mongodb://localhost:27017",
+        "uri": "${MONGO_URI}",
         "connectTimeout": "3s",
         "pingTimeout": "2s"
       },
@@ -102,7 +102,7 @@ config:
           "writers": [{
             "type": "RotateFile",
             "rotateFileWriter": {
-              "filename": "log/${NAME}.rpc",
+              "filename": "log/${NAME}.log",
               "maxAge": "24h",
               "formatter": {
                 "type": "Json"

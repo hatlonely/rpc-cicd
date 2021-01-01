@@ -121,7 +121,6 @@ func main() {
 	Must(api.RegisterCICDServiceHandlerFromEndpoint(
 		context.Background(), mux, fmt.Sprintf("0.0.0.0:%v", options.Grpc.Port), []grpc.DialOption{grpc.WithInsecure()},
 	))
-	infoLog.Info(options)
 
 	httpServer := http.Server{Addr: fmt.Sprintf(":%v", options.Http.Port), Handler: mux}
 	go func() {
@@ -130,6 +129,8 @@ func main() {
 		}
 	}()
 
+	infoLog.Info(options)
+	infoLog.Info("start success")
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt, syscall.SIGTERM)
 	<-stop

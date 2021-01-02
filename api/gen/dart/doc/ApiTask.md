@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | [optional] [default to null]
 **subTaskIDs** | **List&lt;String&gt;** |  | [optional] [default to []]
 **variableIDs** | **List&lt;String&gt;** |  | [optional] [default to []]
+**environments** | [**List&lt;TaskEnvironment&gt;**](TaskEnvironment.md) |  | [optional] [default to []]
 **createAt** | **int** |  | [optional] [default to null]
 **updateAt** | **int** |  | [optional] [default to null]
 

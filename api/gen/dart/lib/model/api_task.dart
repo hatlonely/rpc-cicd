@@ -12,6 +12,8 @@ class ApiTask {
   
   List<String> variableIDs = [];
   
+  List<TaskEnvironment> environments = [];
+  
   int createAt = null;
   
   int updateAt = null;
@@ -19,7 +21,7 @@ class ApiTask {
 
   @override
   String toString() {
-    return 'ApiTask[id=$id, name=$name, description=$description, subTaskIDs=$subTaskIDs, variableIDs=$variableIDs, createAt=$createAt, updateAt=$updateAt, ]';
+    return 'ApiTask[id=$id, name=$name, description=$description, subTaskIDs=$subTaskIDs, variableIDs=$variableIDs, environments=$environments, createAt=$createAt, updateAt=$updateAt, ]';
   }
 
   ApiTask.fromJson(Map<String, dynamic> json) {
@@ -33,6 +35,9 @@ class ApiTask {
     variableIDs = (json['variableIDs'] == null) ?
       null :
       (json['variableIDs'] as List).cast<String>();
+    environments = (json['environments'] == null) ?
+      null :
+      TaskEnvironment.listFromJson(json['environments']);
     createAt = json['createAt'];
     updateAt = json['updateAt'];
   }
@@ -49,6 +54,8 @@ class ApiTask {
       json['subTaskIDs'] = subTaskIDs;
     if (variableIDs != null)
       json['variableIDs'] = variableIDs;
+    if (environments != null)
+      json['environments'] = environments;
     if (createAt != null)
       json['createAt'] = createAt;
     if (updateAt != null)

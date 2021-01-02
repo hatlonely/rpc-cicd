@@ -88,6 +88,8 @@ class ApiClient {
           return RuntimeError.fromJson(value);
         case 'SubTaskScriptSubTask':
           return SubTaskScriptSubTask.fromJson(value);
+        case 'TaskEnvironment':
+          return TaskEnvironment.fromJson(value);
         default:
           {
             Match match;

@@ -41,6 +41,7 @@ part 'model/job_sub.dart';
 part 'model/protobuf_any.dart';
 part 'model/runtime_error.dart';
 part 'model/sub_task_script_sub_task.dart';
+part 'model/task_environment.dart';
 
 
 ApiClient defaultApiClient = ApiClient();

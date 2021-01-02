@@ -773,6 +773,20 @@
         }
       }
     },
+    "TaskEnvironment": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "apiDelJobRes": {
       "type": "object",
       "properties": {
@@ -1010,6 +1024,12 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        },
+        "environments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskEnvironment"
           }
         },
         "createAt": {

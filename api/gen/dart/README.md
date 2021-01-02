@@ -109,6 +109,7 @@ Class | Method | HTTP request | Description
  - [ProtobufAny](doc//ProtobufAny.md)
  - [RuntimeError](doc//RuntimeError.md)
  - [SubTaskScriptSubTask](doc//SubTaskScriptSubTask.md)
+ - [TaskEnvironment](doc//TaskEnvironment.md)
 
 
 ## Documentation For Authorization

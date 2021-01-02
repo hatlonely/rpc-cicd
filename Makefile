@@ -1,4 +1,4 @@
-binary=cicd
+binary=rpc-cicd
 user=hatlonely
 repository=rpc-cicd
 version=$(shell git describe --tags | awk '{print(substr($$0,2,length($$0)))}')

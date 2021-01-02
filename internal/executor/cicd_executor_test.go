@@ -4,9 +4,8 @@ import (
 	"testing"
 	"time"
 
-	. "github.com/smartystreets/goconvey/convey"
-
 	"github.com/hatlonely/go-kit/cli"
+	. "github.com/smartystreets/goconvey/convey"
 
 	"github.com/hatlonely/rpc-cicd/internal/storage"
 )
@@ -23,7 +22,7 @@ func TestCICDExecutor(t *testing.T) {
 			Database:           "test",
 			TaskCollection:     "task",
 			JobCollection:      "job",
-			TemplateCollection: "template",
+			SubTaskCollection:  "subTask",
 			VariableCollection: "variable",
 			SequenceCollection: "sequence",
 			Timeout:            time.Second,

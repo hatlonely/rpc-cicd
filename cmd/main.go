@@ -103,7 +103,7 @@ func main() {
 	defer executor.Stop()
 	executor.SetLogger(execLog)
 
-	grpcServer := grpc.NewServer(rpcx.GRPCUnaryInterceptor(grpcLog, rpcx.WithDefaultValidator()))
+	grpcServer := grpc.NewServer(rpcx.GRPCUnaryInterceptor(grpcLog, rpcx.WithGRPCUnaryInterceptorDefaultValidator()))
 	api.RegisterCICDServiceServer(grpcServer, svc)
 
 	go func() {

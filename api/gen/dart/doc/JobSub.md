@@ -8,8 +8,8 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**templateID** | **String** |  | [optional] [default to null]
-**templateName** | **String** |  | [optional] [default to null]
+**subTaskID** | **String** |  | [optional] [default to null]
+**subTaskName** | **String** |  | [optional] [default to null]
 **status** | **String** |  | [optional] [default to null]
 **language** | **String** |  | [optional] [default to null]
 **script** | **String** |  | [optional] [default to null]

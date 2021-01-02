@@ -38,44 +38,44 @@ class ApiClient {
           return value is double ? value : double.parse('$value');
         case 'ApiDelJobRes':
           return ApiDelJobRes.fromJson(value);
+        case 'ApiDelSubTaskRes':
+          return ApiDelSubTaskRes.fromJson(value);
         case 'ApiDelTaskRes':
           return ApiDelTaskRes.fromJson(value);
-        case 'ApiDelTemplateRes':
-          return ApiDelTemplateRes.fromJson(value);
         case 'ApiDelVariableRes':
           return ApiDelVariableRes.fromJson(value);
-        case 'ApiGetTemplatesReq':
-          return ApiGetTemplatesReq.fromJson(value);
+        case 'ApiGetSubTasksReq':
+          return ApiGetSubTasksReq.fromJson(value);
         case 'ApiGetVariablesReq':
           return ApiGetVariablesReq.fromJson(value);
         case 'ApiJob':
           return ApiJob.fromJson(value);
         case 'ApiListJobRes':
           return ApiListJobRes.fromJson(value);
+        case 'ApiListSubTaskRes':
+          return ApiListSubTaskRes.fromJson(value);
         case 'ApiListTaskRes':
           return ApiListTaskRes.fromJson(value);
-        case 'ApiListTemplateRes':
-          return ApiListTemplateRes.fromJson(value);
         case 'ApiListVariableRes':
           return ApiListVariableRes.fromJson(value);
+        case 'ApiPutSubTaskRes':
+          return ApiPutSubTaskRes.fromJson(value);
         case 'ApiPutTaskRes':
           return ApiPutTaskRes.fromJson(value);
-        case 'ApiPutTemplateRes':
-          return ApiPutTemplateRes.fromJson(value);
         case 'ApiPutVariableRes':
           return ApiPutVariableRes.fromJson(value);
         case 'ApiRunTaskReq':
           return ApiRunTaskReq.fromJson(value);
         case 'ApiRunTaskRes':
           return ApiRunTaskRes.fromJson(value);
+        case 'ApiSubTask':
+          return ApiSubTask.fromJson(value);
         case 'ApiTask':
           return ApiTask.fromJson(value);
-        case 'ApiTemplate':
-          return ApiTemplate.fromJson(value);
+        case 'ApiUpdateSubTaskRes':
+          return ApiUpdateSubTaskRes.fromJson(value);
         case 'ApiUpdateTaskRes':
           return ApiUpdateTaskRes.fromJson(value);
-        case 'ApiUpdateTemplateRes':
-          return ApiUpdateTemplateRes.fromJson(value);
         case 'ApiUpdateVariableRes':
           return ApiUpdateVariableRes.fromJson(value);
         case 'ApiVariable':
@@ -86,8 +86,8 @@ class ApiClient {
           return ProtobufAny.fromJson(value);
         case 'RuntimeError':
           return RuntimeError.fromJson(value);
-        case 'TemplateScriptTemplate':
-          return TemplateScriptTemplate.fromJson(value);
+        case 'SubTaskScriptSubTask':
+          return SubTaskScriptSubTask.fromJson(value);
         default:
           {
             Match match;

@@ -8,7 +8,7 @@ class ApiTask {
   
   String description = null;
   
-  List<String> templateIDs = [];
+  List<String> subTaskIDs = [];
   
   List<String> variableIDs = [];
   
@@ -19,7 +19,7 @@ class ApiTask {
 
   @override
   String toString() {
-    return 'ApiTask[id=$id, name=$name, description=$description, templateIDs=$templateIDs, variableIDs=$variableIDs, createAt=$createAt, updateAt=$updateAt, ]';
+    return 'ApiTask[id=$id, name=$name, description=$description, subTaskIDs=$subTaskIDs, variableIDs=$variableIDs, createAt=$createAt, updateAt=$updateAt, ]';
   }
 
   ApiTask.fromJson(Map<String, dynamic> json) {
@@ -27,9 +27,9 @@ class ApiTask {
     id = json['id'];
     name = json['name'];
     description = json['description'];
-    templateIDs = (json['templateIDs'] == null) ?
+    subTaskIDs = (json['subTaskIDs'] == null) ?
       null :
-      (json['templateIDs'] as List).cast<String>();
+      (json['subTaskIDs'] as List).cast<String>();
     variableIDs = (json['variableIDs'] == null) ?
       null :
       (json['variableIDs'] as List).cast<String>();
@@ -45,8 +45,8 @@ class ApiTask {
       json['name'] = name;
     if (description != null)
       json['description'] = description;
-    if (templateIDs != null)
-      json['templateIDs'] = templateIDs;
+    if (subTaskIDs != null)
+      json['subTaskIDs'] = subTaskIDs;
     if (variableIDs != null)
       json['variableIDs'] = variableIDs;
     if (createAt != null)

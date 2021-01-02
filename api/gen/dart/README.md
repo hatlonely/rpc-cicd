@@ -59,56 +59,56 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *CICDServiceApi* | [**cICDServiceDelJob**](doc//CICDServiceApi.md#cicdservicedeljob) | **DELETE** /v1/job/{id} | 
+*CICDServiceApi* | [**cICDServiceDelSubTask**](doc//CICDServiceApi.md#cicdservicedelsubtask) | **DELETE** /v1/subTask/{id} | 
 *CICDServiceApi* | [**cICDServiceDelTask**](doc//CICDServiceApi.md#cicdservicedeltask) | **DELETE** /v1/task/{id} | 
-*CICDServiceApi* | [**cICDServiceDelTemplate**](doc//CICDServiceApi.md#cicdservicedeltemplate) | **DELETE** /v1/template/{id} | 
 *CICDServiceApi* | [**cICDServiceDelVariable**](doc//CICDServiceApi.md#cicdservicedelvariable) | **DELETE** /v1/variable/{id} | 
 *CICDServiceApi* | [**cICDServiceGetJob**](doc//CICDServiceApi.md#cicdservicegetjob) | **GET** /v1/job/{id} | 
+*CICDServiceApi* | [**cICDServiceGetSubTask**](doc//CICDServiceApi.md#cicdservicegetsubtask) | **GET** /v1/subTask/{id} | 
+*CICDServiceApi* | [**cICDServiceGetSubTasks**](doc//CICDServiceApi.md#cicdservicegetsubtasks) | **POST** /v1/getSubTasks | 
 *CICDServiceApi* | [**cICDServiceGetTask**](doc//CICDServiceApi.md#cicdservicegettask) | **GET** /v1/task/{id} | 
-*CICDServiceApi* | [**cICDServiceGetTemplate**](doc//CICDServiceApi.md#cicdservicegettemplate) | **GET** /v1/template/{id} | 
-*CICDServiceApi* | [**cICDServiceGetTemplates**](doc//CICDServiceApi.md#cicdservicegettemplates) | **POST** /v1/getTemplates | 
 *CICDServiceApi* | [**cICDServiceGetVariable**](doc//CICDServiceApi.md#cicdservicegetvariable) | **GET** /v1/variable/{id} | 
 *CICDServiceApi* | [**cICDServiceGetVariables**](doc//CICDServiceApi.md#cicdservicegetvariables) | **POST** /v1/getVariables | 
 *CICDServiceApi* | [**cICDServiceListJob**](doc//CICDServiceApi.md#cicdservicelistjob) | **GET** /v1/job | 
+*CICDServiceApi* | [**cICDServiceListSubTask**](doc//CICDServiceApi.md#cicdservicelistsubtask) | **GET** /v1/subTask | 
 *CICDServiceApi* | [**cICDServiceListTask**](doc//CICDServiceApi.md#cicdservicelisttask) | **GET** /v1/task | 
-*CICDServiceApi* | [**cICDServiceListTemplate**](doc//CICDServiceApi.md#cicdservicelisttemplate) | **GET** /v1/template | 
 *CICDServiceApi* | [**cICDServiceListVariable**](doc//CICDServiceApi.md#cicdservicelistvariable) | **GET** /v1/variable | 
+*CICDServiceApi* | [**cICDServicePutSubTask**](doc//CICDServiceApi.md#cicdserviceputsubtask) | **POST** /v1/subTask | 
 *CICDServiceApi* | [**cICDServicePutTask**](doc//CICDServiceApi.md#cicdserviceputtask) | **POST** /v1/task | 
-*CICDServiceApi* | [**cICDServicePutTemplate**](doc//CICDServiceApi.md#cicdserviceputtemplate) | **POST** /v1/template | 
 *CICDServiceApi* | [**cICDServicePutVariable**](doc//CICDServiceApi.md#cicdserviceputvariable) | **POST** /v1/variable | 
 *CICDServiceApi* | [**cICDServiceRunTask**](doc//CICDServiceApi.md#cicdserviceruntask) | **POST** /v1/runTask | 
+*CICDServiceApi* | [**cICDServiceUpdateSubTask**](doc//CICDServiceApi.md#cicdserviceupdatesubtask) | **PUT** /v1/subTask/{subTask.id} | 
 *CICDServiceApi* | [**cICDServiceUpdateTask**](doc//CICDServiceApi.md#cicdserviceupdatetask) | **PUT** /v1/task/{task.id} | 
-*CICDServiceApi* | [**cICDServiceUpdateTemplate**](doc//CICDServiceApi.md#cicdserviceupdatetemplate) | **PUT** /v1/template/{template.id} | 
 *CICDServiceApi* | [**cICDServiceUpdateVariable**](doc//CICDServiceApi.md#cicdserviceupdatevariable) | **PUT** /v1/variable/{variable.id} | 
 
 
 ## Documentation For Models
 
  - [ApiDelJobRes](doc//ApiDelJobRes.md)
+ - [ApiDelSubTaskRes](doc//ApiDelSubTaskRes.md)
  - [ApiDelTaskRes](doc//ApiDelTaskRes.md)
- - [ApiDelTemplateRes](doc//ApiDelTemplateRes.md)
  - [ApiDelVariableRes](doc//ApiDelVariableRes.md)
- - [ApiGetTemplatesReq](doc//ApiGetTemplatesReq.md)
+ - [ApiGetSubTasksReq](doc//ApiGetSubTasksReq.md)
  - [ApiGetVariablesReq](doc//ApiGetVariablesReq.md)
  - [ApiJob](doc//ApiJob.md)
  - [ApiListJobRes](doc//ApiListJobRes.md)
+ - [ApiListSubTaskRes](doc//ApiListSubTaskRes.md)
  - [ApiListTaskRes](doc//ApiListTaskRes.md)
- - [ApiListTemplateRes](doc//ApiListTemplateRes.md)
  - [ApiListVariableRes](doc//ApiListVariableRes.md)
+ - [ApiPutSubTaskRes](doc//ApiPutSubTaskRes.md)
  - [ApiPutTaskRes](doc//ApiPutTaskRes.md)
- - [ApiPutTemplateRes](doc//ApiPutTemplateRes.md)
  - [ApiPutVariableRes](doc//ApiPutVariableRes.md)
  - [ApiRunTaskReq](doc//ApiRunTaskReq.md)
  - [ApiRunTaskRes](doc//ApiRunTaskRes.md)
+ - [ApiSubTask](doc//ApiSubTask.md)
  - [ApiTask](doc//ApiTask.md)
- - [ApiTemplate](doc//ApiTemplate.md)
+ - [ApiUpdateSubTaskRes](doc//ApiUpdateSubTaskRes.md)
  - [ApiUpdateTaskRes](doc//ApiUpdateTaskRes.md)
- - [ApiUpdateTemplateRes](doc//ApiUpdateTemplateRes.md)
  - [ApiUpdateVariableRes](doc//ApiUpdateVariableRes.md)
  - [ApiVariable](doc//ApiVariable.md)
  - [JobSub](doc//JobSub.md)
  - [ProtobufAny](doc//ProtobufAny.md)
  - [RuntimeError](doc//RuntimeError.md)
- - [TemplateScriptTemplate](doc//TemplateScriptTemplate.md)
+ - [SubTaskScriptSubTask](doc//SubTaskScriptSubTask.md)
 
 
 ## Documentation For Authorization

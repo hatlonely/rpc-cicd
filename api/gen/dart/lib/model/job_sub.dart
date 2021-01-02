@@ -2,9 +2,9 @@ part of openapi.api;
 
 class JobSub {
   
-  String templateID = null;
+  String subTaskID = null;
   
-  String templateName = null;
+  String subTaskName = null;
   
   String status = null;
   
@@ -25,13 +25,13 @@ class JobSub {
 
   @override
   String toString() {
-    return 'JobSub[templateID=$templateID, templateName=$templateName, status=$status, language=$language, script=$script, exitCode=$exitCode, stdout=$stdout, stderr=$stderr, elapseSeconds=$elapseSeconds, updateAt=$updateAt, ]';
+    return 'JobSub[subTaskID=$subTaskID, subTaskName=$subTaskName, status=$status, language=$language, script=$script, exitCode=$exitCode, stdout=$stdout, stderr=$stderr, elapseSeconds=$elapseSeconds, updateAt=$updateAt, ]';
   }
 
   JobSub.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    templateID = json['templateID'];
-    templateName = json['templateName'];
+    subTaskID = json['subTaskID'];
+    subTaskName = json['subTaskName'];
     status = json['status'];
     language = json['language'];
     script = json['script'];
@@ -44,10 +44,10 @@ class JobSub {
 
   Map<String, dynamic> toJson() {
     Map <String, dynamic> json = {};
-    if (templateID != null)
-      json['templateID'] = templateID;
-    if (templateName != null)
-      json['templateName'] = templateName;
+    if (subTaskID != null)
+      json['subTaskID'] = subTaskID;
+    if (subTaskName != null)
+      json['subTaskName'] = subTaskName;
     if (status != null)
       json['status'] = status;
     if (language != null)

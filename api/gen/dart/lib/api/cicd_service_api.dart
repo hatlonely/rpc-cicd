@@ -68,6 +68,64 @@ class CICDServiceApi {
   ///  with HTTP info returned
   ///
   /// 
+  Future<Response> cICDServiceDelSubTaskWithHttpInfo(String id) async {
+    Object postBody;
+
+    // verify required params are set
+    if(id == null) {
+     throw ApiException(400, "Missing required param: id");
+    }
+
+    // create path and map variables
+    String path = "/v1/subTask/{id}".replaceAll("{format}","json").replaceAll("{" + "id" + "}", id.toString());
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+
+    List<String> contentTypes = [];
+
+    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    List<String> authNames = [];
+
+    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+    }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'DELETE',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             nullableContentType,
+                                             authNames);
+    return response;
+  }
+
+  /// 
+  ///
+  /// 
+  Future<ApiDelSubTaskRes> cICDServiceDelSubTask(String id) async {
+    Response response = await cICDServiceDelSubTaskWithHttpInfo(id);
+    if(response.statusCode >= 400) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    } else if(response.body != null) {
+      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiDelSubTaskRes') as ApiDelSubTaskRes;
+    } else {
+      return null;
+    }
+  }
+
+  ///  with HTTP info returned
+  ///
+  /// 
   Future<Response> cICDServiceDelTaskWithHttpInfo(String id) async {
     Object postBody;
 
@@ -118,64 +176,6 @@ class CICDServiceApi {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     } else if(response.body != null) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'ApiDelTaskRes') as ApiDelTaskRes;
-    } else {
-      return null;
-    }
-  }
-
-  ///  with HTTP info returned
-  ///
-  /// 
-  Future<Response> cICDServiceDelTemplateWithHttpInfo(String id) async {
-    Object postBody;
-
-    // verify required params are set
-    if(id == null) {
-     throw ApiException(400, "Missing required param: id");
-    }
-
-    // create path and map variables
-    String path = "/v1/template/{id}".replaceAll("{format}","json").replaceAll("{" + "id" + "}", id.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = [];
-
-    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    List<String> authNames = [];
-
-    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'DELETE',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             nullableContentType,
-                                             authNames);
-    return response;
-  }
-
-  /// 
-  ///
-  /// 
-  Future<ApiDelTemplateRes> cICDServiceDelTemplate(String id) async {
-    Response response = await cICDServiceDelTemplateWithHttpInfo(id);
-    if(response.statusCode >= 400) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiDelTemplateRes') as ApiDelTemplateRes;
     } else {
       return null;
     }
@@ -300,6 +300,122 @@ class CICDServiceApi {
   ///  with HTTP info returned
   ///
   /// 
+  Future<Response> cICDServiceGetSubTaskWithHttpInfo(String id) async {
+    Object postBody;
+
+    // verify required params are set
+    if(id == null) {
+     throw ApiException(400, "Missing required param: id");
+    }
+
+    // create path and map variables
+    String path = "/v1/subTask/{id}".replaceAll("{format}","json").replaceAll("{" + "id" + "}", id.toString());
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+
+    List<String> contentTypes = [];
+
+    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    List<String> authNames = [];
+
+    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+    }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'GET',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             nullableContentType,
+                                             authNames);
+    return response;
+  }
+
+  /// 
+  ///
+  /// 
+  Future<ApiSubTask> cICDServiceGetSubTask(String id) async {
+    Response response = await cICDServiceGetSubTaskWithHttpInfo(id);
+    if(response.statusCode >= 400) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    } else if(response.body != null) {
+      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiSubTask') as ApiSubTask;
+    } else {
+      return null;
+    }
+  }
+
+  ///  with HTTP info returned
+  ///
+  /// 
+  Future<Response> cICDServiceGetSubTasksWithHttpInfo(ApiGetSubTasksReq body) async {
+    Object postBody = body;
+
+    // verify required params are set
+    if(body == null) {
+     throw ApiException(400, "Missing required param: body");
+    }
+
+    // create path and map variables
+    String path = "/v1/getSubTasks".replaceAll("{format}","json");
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+
+    List<String> contentTypes = ["application/json"];
+
+    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    List<String> authNames = [];
+
+    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+    }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'POST',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             nullableContentType,
+                                             authNames);
+    return response;
+  }
+
+  /// 
+  ///
+  /// 
+  Future<ApiListSubTaskRes> cICDServiceGetSubTasks(ApiGetSubTasksReq body) async {
+    Response response = await cICDServiceGetSubTasksWithHttpInfo(body);
+    if(response.statusCode >= 400) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    } else if(response.body != null) {
+      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiListSubTaskRes') as ApiListSubTaskRes;
+    } else {
+      return null;
+    }
+  }
+
+  ///  with HTTP info returned
+  ///
+  /// 
   Future<Response> cICDServiceGetTaskWithHttpInfo(String id) async {
     Object postBody;
 
@@ -350,122 +466,6 @@ class CICDServiceApi {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     } else if(response.body != null) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'ApiTask') as ApiTask;
-    } else {
-      return null;
-    }
-  }
-
-  ///  with HTTP info returned
-  ///
-  /// 
-  Future<Response> cICDServiceGetTemplateWithHttpInfo(String id) async {
-    Object postBody;
-
-    // verify required params are set
-    if(id == null) {
-     throw ApiException(400, "Missing required param: id");
-    }
-
-    // create path and map variables
-    String path = "/v1/template/{id}".replaceAll("{format}","json").replaceAll("{" + "id" + "}", id.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = [];
-
-    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    List<String> authNames = [];
-
-    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             nullableContentType,
-                                             authNames);
-    return response;
-  }
-
-  /// 
-  ///
-  /// 
-  Future<ApiTemplate> cICDServiceGetTemplate(String id) async {
-    Response response = await cICDServiceGetTemplateWithHttpInfo(id);
-    if(response.statusCode >= 400) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiTemplate') as ApiTemplate;
-    } else {
-      return null;
-    }
-  }
-
-  ///  with HTTP info returned
-  ///
-  /// 
-  Future<Response> cICDServiceGetTemplatesWithHttpInfo(ApiGetTemplatesReq body) async {
-    Object postBody = body;
-
-    // verify required params are set
-    if(body == null) {
-     throw ApiException(400, "Missing required param: body");
-    }
-
-    // create path and map variables
-    String path = "/v1/getTemplates".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = ["application/json"];
-
-    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    List<String> authNames = [];
-
-    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             nullableContentType,
-                                             authNames);
-    return response;
-  }
-
-  /// 
-  ///
-  /// 
-  Future<ApiListTemplateRes> cICDServiceGetTemplates(ApiGetTemplatesReq body) async {
-    Response response = await cICDServiceGetTemplatesWithHttpInfo(body);
-    if(response.statusCode >= 400) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiListTemplateRes') as ApiListTemplateRes;
     } else {
       return null;
     }
@@ -654,6 +654,70 @@ class CICDServiceApi {
   ///  with HTTP info returned
   ///
   /// 
+  Future<Response> cICDServiceListSubTaskWithHttpInfo({ String offset, String limit, bool brief }) async {
+    Object postBody;
+
+    // verify required params are set
+
+    // create path and map variables
+    String path = "/v1/subTask".replaceAll("{format}","json");
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+    if(offset != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "offset", offset));
+    }
+    if(limit != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "limit", limit));
+    }
+    if(brief != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "brief", brief));
+    }
+
+    List<String> contentTypes = [];
+
+    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    List<String> authNames = [];
+
+    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+    }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'GET',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             nullableContentType,
+                                             authNames);
+    return response;
+  }
+
+  /// 
+  ///
+  /// 
+  Future<ApiListSubTaskRes> cICDServiceListSubTask({ String offset, String limit, bool brief }) async {
+    Response response = await cICDServiceListSubTaskWithHttpInfo( offset: offset, limit: limit, brief: brief );
+    if(response.statusCode >= 400) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    } else if(response.body != null) {
+      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiListSubTaskRes') as ApiListSubTaskRes;
+    } else {
+      return null;
+    }
+  }
+
+  ///  with HTTP info returned
+  ///
+  /// 
   Future<Response> cICDServiceListTaskWithHttpInfo({ String offset, String limit, bool brief }) async {
     Object postBody;
 
@@ -710,70 +774,6 @@ class CICDServiceApi {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     } else if(response.body != null) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'ApiListTaskRes') as ApiListTaskRes;
-    } else {
-      return null;
-    }
-  }
-
-  ///  with HTTP info returned
-  ///
-  /// 
-  Future<Response> cICDServiceListTemplateWithHttpInfo({ String offset, String limit, bool brief }) async {
-    Object postBody;
-
-    // verify required params are set
-
-    // create path and map variables
-    String path = "/v1/template".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    if(offset != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "offset", offset));
-    }
-    if(limit != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "limit", limit));
-    }
-    if(brief != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "brief", brief));
-    }
-
-    List<String> contentTypes = [];
-
-    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    List<String> authNames = [];
-
-    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             nullableContentType,
-                                             authNames);
-    return response;
-  }
-
-  /// 
-  ///
-  /// 
-  Future<ApiListTemplateRes> cICDServiceListTemplate({ String offset, String limit, bool brief }) async {
-    Response response = await cICDServiceListTemplateWithHttpInfo( offset: offset, limit: limit, brief: brief );
-    if(response.statusCode >= 400) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiListTemplateRes') as ApiListTemplateRes;
     } else {
       return null;
     }
@@ -846,6 +846,64 @@ class CICDServiceApi {
   ///  with HTTP info returned
   ///
   /// 
+  Future<Response> cICDServicePutSubTaskWithHttpInfo(ApiSubTask body) async {
+    Object postBody = body;
+
+    // verify required params are set
+    if(body == null) {
+     throw ApiException(400, "Missing required param: body");
+    }
+
+    // create path and map variables
+    String path = "/v1/subTask".replaceAll("{format}","json");
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+
+    List<String> contentTypes = ["application/json"];
+
+    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    List<String> authNames = [];
+
+    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+    }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'POST',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             nullableContentType,
+                                             authNames);
+    return response;
+  }
+
+  /// 
+  ///
+  /// 
+  Future<ApiPutSubTaskRes> cICDServicePutSubTask(ApiSubTask body) async {
+    Response response = await cICDServicePutSubTaskWithHttpInfo(body);
+    if(response.statusCode >= 400) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    } else if(response.body != null) {
+      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiPutSubTaskRes') as ApiPutSubTaskRes;
+    } else {
+      return null;
+    }
+  }
+
+  ///  with HTTP info returned
+  ///
+  /// 
   Future<Response> cICDServicePutTaskWithHttpInfo(ApiTask body) async {
     Object postBody = body;
 
@@ -896,64 +954,6 @@ class CICDServiceApi {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     } else if(response.body != null) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'ApiPutTaskRes') as ApiPutTaskRes;
-    } else {
-      return null;
-    }
-  }
-
-  ///  with HTTP info returned
-  ///
-  /// 
-  Future<Response> cICDServicePutTemplateWithHttpInfo(ApiTemplate body) async {
-    Object postBody = body;
-
-    // verify required params are set
-    if(body == null) {
-     throw ApiException(400, "Missing required param: body");
-    }
-
-    // create path and map variables
-    String path = "/v1/template".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = ["application/json"];
-
-    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    List<String> authNames = [];
-
-    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             nullableContentType,
-                                             authNames);
-    return response;
-  }
-
-  /// 
-  ///
-  /// 
-  Future<ApiPutTemplateRes> cICDServicePutTemplate(ApiTemplate body) async {
-    Response response = await cICDServicePutTemplateWithHttpInfo(body);
-    if(response.statusCode >= 400) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiPutTemplateRes') as ApiPutTemplateRes;
     } else {
       return null;
     }
@@ -1078,6 +1078,67 @@ class CICDServiceApi {
   ///  with HTTP info returned
   ///
   /// 
+  Future<Response> cICDServiceUpdateSubTaskWithHttpInfo(String subTaskId, ApiSubTask body) async {
+    Object postBody = body;
+
+    // verify required params are set
+    if(subTaskId == null) {
+     throw ApiException(400, "Missing required param: subTaskId");
+    }
+    if(body == null) {
+     throw ApiException(400, "Missing required param: body");
+    }
+
+    // create path and map variables
+    String path = "/v1/subTask/{subTask.id}".replaceAll("{format}","json").replaceAll("{" + "subTask.id" + "}", subTaskId.toString());
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+
+    List<String> contentTypes = ["application/json"];
+
+    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
+    List<String> authNames = [];
+
+    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+    }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'PUT',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             nullableContentType,
+                                             authNames);
+    return response;
+  }
+
+  /// 
+  ///
+  /// 
+  Future<ApiUpdateSubTaskRes> cICDServiceUpdateSubTask(String subTaskId, ApiSubTask body) async {
+    Response response = await cICDServiceUpdateSubTaskWithHttpInfo(subTaskId, body);
+    if(response.statusCode >= 400) {
+      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+    } else if(response.body != null) {
+      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiUpdateSubTaskRes') as ApiUpdateSubTaskRes;
+    } else {
+      return null;
+    }
+  }
+
+  ///  with HTTP info returned
+  ///
+  /// 
   Future<Response> cICDServiceUpdateTaskWithHttpInfo(String taskId, ApiTask body) async {
     Object postBody = body;
 
@@ -1131,67 +1192,6 @@ class CICDServiceApi {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     } else if(response.body != null) {
       return apiClient.deserialize(_decodeBodyBytes(response), 'ApiUpdateTaskRes') as ApiUpdateTaskRes;
-    } else {
-      return null;
-    }
-  }
-
-  ///  with HTTP info returned
-  ///
-  /// 
-  Future<Response> cICDServiceUpdateTemplateWithHttpInfo(String templateId, ApiTemplate body) async {
-    Object postBody = body;
-
-    // verify required params are set
-    if(templateId == null) {
-     throw ApiException(400, "Missing required param: templateId");
-    }
-    if(body == null) {
-     throw ApiException(400, "Missing required param: body");
-    }
-
-    // create path and map variables
-    String path = "/v1/template/{template.id}".replaceAll("{format}","json").replaceAll("{" + "template.id" + "}", templateId.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = ["application/json"];
-
-    String nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    List<String> authNames = [];
-
-    if(nullableContentType != null && nullableContentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'PUT',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             nullableContentType,
-                                             authNames);
-    return response;
-  }
-
-  /// 
-  ///
-  /// 
-  Future<ApiUpdateTemplateRes> cICDServiceUpdateTemplate(String templateId, ApiTemplate body) async {
-    Response response = await cICDServiceUpdateTemplateWithHttpInfo(templateId, body);
-    if(response.statusCode >= 400) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
-    } else if(response.body != null) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'ApiUpdateTemplateRes') as ApiUpdateTemplateRes;
     } else {
       return null;
     }

@@ -10,25 +10,25 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cICDServiceDelJob**](CICDServiceApi.md#cICDServiceDelJob) | **DELETE** /v1/job/{id} | 
+[**cICDServiceDelSubTask**](CICDServiceApi.md#cICDServiceDelSubTask) | **DELETE** /v1/subTask/{id} | 
 [**cICDServiceDelTask**](CICDServiceApi.md#cICDServiceDelTask) | **DELETE** /v1/task/{id} | 
-[**cICDServiceDelTemplate**](CICDServiceApi.md#cICDServiceDelTemplate) | **DELETE** /v1/template/{id} | 
 [**cICDServiceDelVariable**](CICDServiceApi.md#cICDServiceDelVariable) | **DELETE** /v1/variable/{id} | 
 [**cICDServiceGetJob**](CICDServiceApi.md#cICDServiceGetJob) | **GET** /v1/job/{id} | 
+[**cICDServiceGetSubTask**](CICDServiceApi.md#cICDServiceGetSubTask) | **GET** /v1/subTask/{id} | 
+[**cICDServiceGetSubTasks**](CICDServiceApi.md#cICDServiceGetSubTasks) | **POST** /v1/getSubTasks | 
 [**cICDServiceGetTask**](CICDServiceApi.md#cICDServiceGetTask) | **GET** /v1/task/{id} | 
-[**cICDServiceGetTemplate**](CICDServiceApi.md#cICDServiceGetTemplate) | **GET** /v1/template/{id} | 
-[**cICDServiceGetTemplates**](CICDServiceApi.md#cICDServiceGetTemplates) | **POST** /v1/getTemplates | 
 [**cICDServiceGetVariable**](CICDServiceApi.md#cICDServiceGetVariable) | **GET** /v1/variable/{id} | 
 [**cICDServiceGetVariables**](CICDServiceApi.md#cICDServiceGetVariables) | **POST** /v1/getVariables | 
 [**cICDServiceListJob**](CICDServiceApi.md#cICDServiceListJob) | **GET** /v1/job | 
+[**cICDServiceListSubTask**](CICDServiceApi.md#cICDServiceListSubTask) | **GET** /v1/subTask | 
 [**cICDServiceListTask**](CICDServiceApi.md#cICDServiceListTask) | **GET** /v1/task | 
-[**cICDServiceListTemplate**](CICDServiceApi.md#cICDServiceListTemplate) | **GET** /v1/template | 
 [**cICDServiceListVariable**](CICDServiceApi.md#cICDServiceListVariable) | **GET** /v1/variable | 
+[**cICDServicePutSubTask**](CICDServiceApi.md#cICDServicePutSubTask) | **POST** /v1/subTask | 
 [**cICDServicePutTask**](CICDServiceApi.md#cICDServicePutTask) | **POST** /v1/task | 
-[**cICDServicePutTemplate**](CICDServiceApi.md#cICDServicePutTemplate) | **POST** /v1/template | 
 [**cICDServicePutVariable**](CICDServiceApi.md#cICDServicePutVariable) | **POST** /v1/variable | 
 [**cICDServiceRunTask**](CICDServiceApi.md#cICDServiceRunTask) | **POST** /v1/runTask | 
+[**cICDServiceUpdateSubTask**](CICDServiceApi.md#cICDServiceUpdateSubTask) | **PUT** /v1/subTask/{subTask.id} | 
 [**cICDServiceUpdateTask**](CICDServiceApi.md#cICDServiceUpdateTask) | **PUT** /v1/task/{task.id} | 
-[**cICDServiceUpdateTemplate**](CICDServiceApi.md#cICDServiceUpdateTemplate) | **PUT** /v1/template/{template.id} | 
 [**cICDServiceUpdateVariable**](CICDServiceApi.md#cICDServiceUpdateVariable) | **PUT** /v1/variable/{variable.id} | 
 
 
@@ -73,6 +73,47 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **cICDServiceDelSubTask**
+> ApiDelSubTaskRes cICDServiceDelSubTask(id)
+
+
+
+### Example 
+```dart
+import 'package:openapi/api.dart';
+
+var api_instance = CICDServiceApi();
+var id = id_example; // String | 
+
+try { 
+    var result = api_instance.cICDServiceDelSubTask(id);
+    print(result);
+} catch (e) {
+    print("Exception when calling CICDServiceApi->cICDServiceDelSubTask: $e\n");
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | [default to null]
+
+### Return type
+
+[**ApiDelSubTaskRes**](ApiDelSubTaskRes.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **cICDServiceDelTask**
 > ApiDelTaskRes cICDServiceDelTask(id)
 
@@ -102,47 +143,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ApiDelTaskRes**](ApiDelTaskRes.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **cICDServiceDelTemplate**
-> ApiDelTemplateRes cICDServiceDelTemplate(id)
-
-
-
-### Example 
-```dart
-import 'package:openapi/api.dart';
-
-var api_instance = CICDServiceApi();
-var id = id_example; // String | 
-
-try { 
-    var result = api_instance.cICDServiceDelTemplate(id);
-    print(result);
-} catch (e) {
-    print("Exception when calling CICDServiceApi->cICDServiceDelTemplate: $e\n");
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  | [default to null]
-
-### Return type
-
-[**ApiDelTemplateRes**](ApiDelTemplateRes.md)
 
 ### Authorization
 
@@ -237,6 +237,88 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **cICDServiceGetSubTask**
+> ApiSubTask cICDServiceGetSubTask(id)
+
+
+
+### Example 
+```dart
+import 'package:openapi/api.dart';
+
+var api_instance = CICDServiceApi();
+var id = id_example; // String | 
+
+try { 
+    var result = api_instance.cICDServiceGetSubTask(id);
+    print(result);
+} catch (e) {
+    print("Exception when calling CICDServiceApi->cICDServiceGetSubTask: $e\n");
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | [default to null]
+
+### Return type
+
+[**ApiSubTask**](ApiSubTask.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **cICDServiceGetSubTasks**
+> ApiListSubTaskRes cICDServiceGetSubTasks(body)
+
+
+
+### Example 
+```dart
+import 'package:openapi/api.dart';
+
+var api_instance = CICDServiceApi();
+var body = ApiGetSubTasksReq(); // ApiGetSubTasksReq | 
+
+try { 
+    var result = api_instance.cICDServiceGetSubTasks(body);
+    print(result);
+} catch (e) {
+    print("Exception when calling CICDServiceApi->cICDServiceGetSubTasks: $e\n");
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ApiGetSubTasksReq**](ApiGetSubTasksReq.md)|  | 
+
+### Return type
+
+[**ApiListSubTaskRes**](ApiListSubTaskRes.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **cICDServiceGetTask**
 > ApiTask cICDServiceGetTask(id)
 
@@ -274,88 +356,6 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **cICDServiceGetTemplate**
-> ApiTemplate cICDServiceGetTemplate(id)
-
-
-
-### Example 
-```dart
-import 'package:openapi/api.dart';
-
-var api_instance = CICDServiceApi();
-var id = id_example; // String | 
-
-try { 
-    var result = api_instance.cICDServiceGetTemplate(id);
-    print(result);
-} catch (e) {
-    print("Exception when calling CICDServiceApi->cICDServiceGetTemplate: $e\n");
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**|  | [default to null]
-
-### Return type
-
-[**ApiTemplate**](ApiTemplate.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **cICDServiceGetTemplates**
-> ApiListTemplateRes cICDServiceGetTemplates(body)
-
-
-
-### Example 
-```dart
-import 'package:openapi/api.dart';
-
-var api_instance = CICDServiceApi();
-var body = ApiGetTemplatesReq(); // ApiGetTemplatesReq | 
-
-try { 
-    var result = api_instance.cICDServiceGetTemplates(body);
-    print(result);
-} catch (e) {
-    print("Exception when calling CICDServiceApi->cICDServiceGetTemplates: $e\n");
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**ApiGetTemplatesReq**](ApiGetTemplatesReq.md)|  | 
-
-### Return type
-
-[**ApiListTemplateRes**](ApiListTemplateRes.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -487,6 +487,51 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **cICDServiceListSubTask**
+> ApiListSubTaskRes cICDServiceListSubTask(offset, limit, brief)
+
+
+
+### Example 
+```dart
+import 'package:openapi/api.dart';
+
+var api_instance = CICDServiceApi();
+var offset = offset_example; // String | 
+var limit = limit_example; // String | 
+var brief = true; // bool | 
+
+try { 
+    var result = api_instance.cICDServiceListSubTask(offset, limit, brief);
+    print(result);
+} catch (e) {
+    print("Exception when calling CICDServiceApi->cICDServiceListSubTask: $e\n");
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **offset** | **String**|  | [optional] [default to null]
+ **limit** | **String**|  | [optional] [default to null]
+ **brief** | **bool**|  | [optional] [default to null]
+
+### Return type
+
+[**ApiListSubTaskRes**](ApiListSubTaskRes.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **cICDServiceListTask**
 > ApiListTaskRes cICDServiceListTask(offset, limit, brief)
 
@@ -520,51 +565,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ApiListTaskRes**](ApiListTaskRes.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **cICDServiceListTemplate**
-> ApiListTemplateRes cICDServiceListTemplate(offset, limit, brief)
-
-
-
-### Example 
-```dart
-import 'package:openapi/api.dart';
-
-var api_instance = CICDServiceApi();
-var offset = offset_example; // String | 
-var limit = limit_example; // String | 
-var brief = true; // bool | 
-
-try { 
-    var result = api_instance.cICDServiceListTemplate(offset, limit, brief);
-    print(result);
-} catch (e) {
-    print("Exception when calling CICDServiceApi->cICDServiceListTemplate: $e\n");
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **offset** | **String**|  | [optional] [default to null]
- **limit** | **String**|  | [optional] [default to null]
- **brief** | **bool**|  | [optional] [default to null]
-
-### Return type
-
-[**ApiListTemplateRes**](ApiListTemplateRes.md)
 
 ### Authorization
 
@@ -622,6 +622,47 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **cICDServicePutSubTask**
+> ApiPutSubTaskRes cICDServicePutSubTask(body)
+
+
+
+### Example 
+```dart
+import 'package:openapi/api.dart';
+
+var api_instance = CICDServiceApi();
+var body = ApiSubTask(); // ApiSubTask | 
+
+try { 
+    var result = api_instance.cICDServicePutSubTask(body);
+    print(result);
+} catch (e) {
+    print("Exception when calling CICDServiceApi->cICDServicePutSubTask: $e\n");
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ApiSubTask**](ApiSubTask.md)|  | 
+
+### Return type
+
+[**ApiPutSubTaskRes**](ApiPutSubTaskRes.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **cICDServicePutTask**
 > ApiPutTaskRes cICDServicePutTask(body)
 
@@ -651,47 +692,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ApiPutTaskRes**](ApiPutTaskRes.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **cICDServicePutTemplate**
-> ApiPutTemplateRes cICDServicePutTemplate(body)
-
-
-
-### Example 
-```dart
-import 'package:openapi/api.dart';
-
-var api_instance = CICDServiceApi();
-var body = ApiTemplate(); // ApiTemplate | 
-
-try { 
-    var result = api_instance.cICDServicePutTemplate(body);
-    print(result);
-} catch (e) {
-    print("Exception when calling CICDServiceApi->cICDServicePutTemplate: $e\n");
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**ApiTemplate**](ApiTemplate.md)|  | 
-
-### Return type
-
-[**ApiPutTemplateRes**](ApiPutTemplateRes.md)
 
 ### Authorization
 
@@ -786,6 +786,49 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **cICDServiceUpdateSubTask**
+> ApiUpdateSubTaskRes cICDServiceUpdateSubTask(subTaskId, body)
+
+
+
+### Example 
+```dart
+import 'package:openapi/api.dart';
+
+var api_instance = CICDServiceApi();
+var subTaskId = subTaskId_example; // String | 
+var body = ApiSubTask(); // ApiSubTask | 
+
+try { 
+    var result = api_instance.cICDServiceUpdateSubTask(subTaskId, body);
+    print(result);
+} catch (e) {
+    print("Exception when calling CICDServiceApi->cICDServiceUpdateSubTask: $e\n");
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subTaskId** | **String**|  | [default to null]
+ **body** | [**ApiSubTask**](ApiSubTask.md)|  | 
+
+### Return type
+
+[**ApiUpdateSubTaskRes**](ApiUpdateSubTaskRes.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **cICDServiceUpdateTask**
 > ApiUpdateTaskRes cICDServiceUpdateTask(taskId, body)
 
@@ -817,49 +860,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ApiUpdateTaskRes**](ApiUpdateTaskRes.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **cICDServiceUpdateTemplate**
-> ApiUpdateTemplateRes cICDServiceUpdateTemplate(templateId, body)
-
-
-
-### Example 
-```dart
-import 'package:openapi/api.dart';
-
-var api_instance = CICDServiceApi();
-var templateId = templateId_example; // String | 
-var body = ApiTemplate(); // ApiTemplate | 
-
-try { 
-    var result = api_instance.cICDServiceUpdateTemplate(templateId, body);
-    print(result);
-} catch (e) {
-    print("Exception when calling CICDServiceApi->cICDServiceUpdateTemplate: $e\n");
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **templateId** | **String**|  | [default to null]
- **body** | [**ApiTemplate**](ApiTemplate.md)|  | 
-
-### Return type
-
-[**ApiUpdateTemplateRes**](ApiUpdateTemplateRes.md)
 
 ### Authorization
 

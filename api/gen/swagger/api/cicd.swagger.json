@@ -11,14 +11,14 @@
     "application/json"
   ],
   "paths": {
-    "/v1/getTemplates": {
+    "/v1/getSubTasks": {
       "post": {
-        "operationId": "CICDService_GetTemplates",
+        "operationId": "CICDService_GetSubTasks",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apiListTemplateRes"
+              "$ref": "#/definitions/apiListSubTaskRes"
             }
           },
           "default": {
@@ -34,7 +34,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apiGetTemplatesReq"
+              "$ref": "#/definitions/apiGetSubTasksReq"
             }
           }
         ],
@@ -209,6 +209,177 @@
         ]
       }
     },
+    "/v1/subTask": {
+      "get": {
+        "operationId": "CICDService_ListSubTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListSubTaskRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "brief",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          }
+        ],
+        "tags": [
+          "CICDService"
+        ]
+      },
+      "post": {
+        "operationId": "CICDService_PutSubTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiPutSubTaskRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiSubTask"
+            }
+          }
+        ],
+        "tags": [
+          "CICDService"
+        ]
+      }
+    },
+    "/v1/subTask/{id}": {
+      "get": {
+        "operationId": "CICDService_GetSubTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiSubTask"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CICDService"
+        ]
+      },
+      "delete": {
+        "operationId": "CICDService_DelSubTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiDelSubTaskRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CICDService"
+        ]
+      }
+    },
+    "/v1/subTask/{subTask.id}": {
+      "put": {
+        "operationId": "CICDService_UpdateSubTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiUpdateSubTaskRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "subTask.id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiSubTask"
+            }
+          }
+        ],
+        "tags": [
+          "CICDService"
+        ]
+      }
+    },
     "/v1/task": {
       "get": {
         "operationId": "CICDService_ListTask",
@@ -372,177 +543,6 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/apiTask"
-            }
-          }
-        ],
-        "tags": [
-          "CICDService"
-        ]
-      }
-    },
-    "/v1/template": {
-      "get": {
-        "operationId": "CICDService_ListTemplate",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiListTemplateRes"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "brief",
-            "in": "query",
-            "required": false,
-            "type": "boolean",
-            "format": "boolean"
-          }
-        ],
-        "tags": [
-          "CICDService"
-        ]
-      },
-      "post": {
-        "operationId": "CICDService_PutTemplate",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiPutTemplateRes"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/apiTemplate"
-            }
-          }
-        ],
-        "tags": [
-          "CICDService"
-        ]
-      }
-    },
-    "/v1/template/{id}": {
-      "get": {
-        "operationId": "CICDService_GetTemplate",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiTemplate"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "CICDService"
-        ]
-      },
-      "delete": {
-        "operationId": "CICDService_DelTemplate",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiDelTemplateRes"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "CICDService"
-        ]
-      }
-    },
-    "/v1/template/{template.id}": {
-      "put": {
-        "operationId": "CICDService_UpdateTemplate",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/apiUpdateTemplateRes"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "template.id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/apiTemplate"
             }
           }
         ],
@@ -727,10 +727,10 @@
     "JobSub": {
       "type": "object",
       "properties": {
-        "templateID": {
+        "subTaskID": {
           "type": "string"
         },
-        "templateName": {
+        "subTaskName": {
           "type": "string"
         },
         "status": {
@@ -762,7 +762,7 @@
         }
       }
     },
-    "TemplateScriptTemplate": {
+    "SubTaskScriptSubTask": {
       "type": "object",
       "properties": {
         "language": {
@@ -781,7 +781,7 @@
         }
       }
     },
-    "apiDelTaskRes": {
+    "apiDelSubTaskRes": {
       "type": "object",
       "properties": {
         "id": {
@@ -789,7 +789,7 @@
         }
       }
     },
-    "apiDelTemplateRes": {
+    "apiDelTaskRes": {
       "type": "object",
       "properties": {
         "id": {
@@ -805,7 +805,7 @@
         }
       }
     },
-    "apiGetTemplatesReq": {
+    "apiGetSubTasksReq": {
       "type": "object",
       "properties": {
         "ids": {
@@ -884,6 +884,17 @@
         }
       }
     },
+    "apiListSubTaskRes": {
+      "type": "object",
+      "properties": {
+        "subTasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiSubTask"
+          }
+        }
+      }
+    },
     "apiListTaskRes": {
       "type": "object",
       "properties": {
@@ -891,17 +902,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/apiTask"
-          }
-        }
-      }
-    },
-    "apiListTemplateRes": {
-      "type": "object",
-      "properties": {
-        "templates": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/apiTemplate"
           }
         }
       }
@@ -917,7 +917,7 @@
         }
       }
     },
-    "apiPutTaskRes": {
+    "apiPutSubTaskRes": {
       "type": "object",
       "properties": {
         "id": {
@@ -925,7 +925,7 @@
         }
       }
     },
-    "apiPutTemplateRes": {
+    "apiPutTaskRes": {
       "type": "object",
       "properties": {
         "id": {
@@ -957,41 +957,7 @@
         }
       }
     },
-    "apiTask": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "templateIDs": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "variableIDs": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "createAt": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "updateAt": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "apiTemplate": {
+    "apiSubTask": {
       "type": "object",
       "properties": {
         "id": {
@@ -1017,12 +983,46 @@
           "type": "integer",
           "format": "int32"
         },
-        "scriptTemplate": {
-          "$ref": "#/definitions/TemplateScriptTemplate"
+        "scriptSubTask": {
+          "$ref": "#/definitions/SubTaskScriptSubTask"
         }
       }
     },
-    "apiUpdateTaskRes": {
+    "apiTask": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "subTaskIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "variableIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createAt": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "updateAt": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "apiUpdateSubTaskRes": {
       "type": "object",
       "properties": {
         "id": {
@@ -1030,7 +1030,7 @@
         }
       }
     },
-    "apiUpdateTemplateRes": {
+    "apiUpdateTaskRes": {
       "type": "object",
       "properties": {
         "id": {

@@ -10,8 +10,8 @@ option (gogoproto.goproto_unkeyed_all) = false;
 option (gogoproto.goproto_unrecognized_all) = false;
 option (gogoproto.goproto_sizecache_all) = false;
 
-message Template {
-  message ScriptTemplate {
+message SubTask {
+  message ScriptSubTask {
     string language = 1;
     string script = 2;
   }
@@ -23,49 +23,49 @@ message Template {
   string category = 5 [(gogoproto.moretags) = "bson:\"category,omitempty\""];
   int32 createAt = 6 [(gogoproto.moretags) = "bson:\"createAt,omitempty\""];
   int32 updateAt = 7 [(gogoproto.moretags) = "bson:\"updateAt,omitempty\""];
-  ScriptTemplate scriptTemplate = 8 [(gogoproto.moretags) = "bson:\"scriptTemplate,omitempty\""];
+  ScriptSubTask scriptSubTask = 8 [(gogoproto.moretags) = "bson:\"scriptSubTask,omitempty\""];
 }
 
-message GetTemplateReq {
+message GetSubTaskReq {
   string id = 1;
 }
 
-message GetTemplatesReq {
+message GetSubTasksReq {
   repeated string ids = 1;
 }
 
-message DelTemplateReq {
+message DelSubTaskReq {
   string id = 1;
 }
 
-message DelTemplateRes {
+message DelSubTaskRes {
   string id = 1;
 }
 
-message PutTemplateReq {
-  Template template = 1;
+message PutSubTaskReq {
+  SubTask subTask = 1;
 }
 
-message PutTemplateRes {
+message PutSubTaskRes {
   string id = 1;
 }
 
-message UpdateTemplateReq {
-  Template template = 1;
+message UpdateSubTaskReq {
+  SubTask subTask = 1;
 }
 
-message UpdateTemplateRes {
+message UpdateSubTaskRes {
   string id = 1;
 }
 
-message ListTemplateReq {
+message ListSubTaskReq {
   int64 offset = 1;
   int64 limit = 2;
   bool brief = 3;
 }
 
-message ListTemplateRes {
-  repeated Template templates = 1;
+message ListSubTaskRes {
+  repeated SubTask subTasks = 1;
 }
 
 message Variable {
@@ -123,7 +123,7 @@ message Task {
   string id = 1 [(gogoproto.moretags) = "bson:\"_id,omitempty\""];
   string name = 2 [(gogoproto.moretags) = "bson:\"name,omitempty\""];
   string description = 3 [(gogoproto.moretags) = "bson:\"description,omitempty\""];
-  repeated string templateIDs = 4 [(gogoproto.moretags) = "bson:\"templateIDs,omitempty\""];
+  repeated string subTaskIDs = 4 [(gogoproto.moretags) = "bson:\"subTaskIDs,omitempty\""];
   repeated string variableIDs = 5 [(gogoproto.moretags) = "bson:\"variableIDs,omitempty\""];
   int32 createAt = 6 [(gogoproto.moretags) = "bson:\"createAt,omitempty\""];
   int32 updateAt = 7 [(gogoproto.moretags) = "bson:\"updateAt,omitempty\""];
@@ -169,8 +169,8 @@ message ListTaskRes {
 
 message Job {
   message Sub {
-    string templateID = 1 [(gogoproto.moretags) = "bson:\"templateID,omitempty\""];
-    string templateName = 2 [(gogoproto.moretags) = "bson:\"templateName,omitempty\""];
+    string subTaskID = 1 [(gogoproto.moretags) = "bson:\"subTaskID,omitempty\""];
+    string subTaskName = 2 [(gogoproto.moretags) = "bson:\"subTaskName,omitempty\""];
     string status = 3 [(gogoproto.moretags) = "bson:\"status,omitempty\""];
     string language = 4 [(gogoproto.moretags) = "bson:\"language,omitempty\""];
     string script = 5 [(gogoproto.moretags) = "bson:\"script,omitempty\""];
@@ -232,9 +232,9 @@ service CICDService {
     };
   }
 
-  rpc GetTemplates(GetTemplatesReq) returns (ListTemplateRes) {
+  rpc GetSubTasks(GetSubTasksReq) returns (ListSubTaskRes) {
     option (google.api.http) = {
-      post: "/v1/getTemplates"
+      post: "/v1/getSubTasks"
       body: "*"
     };
   }
@@ -296,35 +296,35 @@ service CICDService {
     };
   }
 
-  rpc GetTemplate(GetTemplateReq) returns (Template) {
+  rpc GetSubTask(GetSubTaskReq) returns (SubTask) {
     option (google.api.http) = {
-      get: "/v1/template/{id}"
+      get: "/v1/subTask/{id}"
     };
   }
 
-  rpc DelTemplate(DelTemplateReq) returns (DelTemplateRes) {
+  rpc DelSubTask(DelSubTaskReq) returns (DelSubTaskRes) {
     option (google.api.http) = {
-      delete: "/v1/template/{id}"
+      delete: "/v1/subTask/{id}"
     };
   }
 
-  rpc PutTemplate(PutTemplateReq) returns (PutTemplateRes) {
+  rpc PutSubTask(PutSubTaskReq) returns (PutSubTaskRes) {
     option (google.api.http) = {
-      post: "/v1/template"
-      body: "template"
+      post: "/v1/subTask"
+      body: "subTask"
     };
   }
 
-  rpc UpdateTemplate(UpdateTemplateReq) returns (UpdateTemplateRes) {
+  rpc UpdateSubTask(UpdateSubTaskReq) returns (UpdateSubTaskRes) {
     option (google.api.http) = {
-      put: "/v1/template/{template.id}"
-      body: "template"
+      put: "/v1/subTask/{subTask.id}"
+      body: "subTask"
     };
   }
 
-  rpc ListTemplate(ListTemplateReq) returns (ListTemplateRes) {
+  rpc ListSubTask(ListSubTaskReq) returns (ListSubTaskRes) {
     option (google.api.http) = {
-      get: "/v1/template"
+      get: "/v1/subTask"
     };
   }
 

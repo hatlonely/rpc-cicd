@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **seq** | **int** |  | [optional] [default to null]
 **taskID** | **String** |  | [optional] [default to null]
 **taskName** | **String** |  | [optional] [default to null]
+**environment** | **Map&lt;String, String&gt;** |  | [optional] [default to {}]
 **status** | **String** |  | [optional] [default to null]
 **error** | **String** |  | [optional] [default to null]
 **createAt** | **int** |  | [optional] [default to null]

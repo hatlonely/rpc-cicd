@@ -857,6 +857,12 @@
         "taskName": {
           "type": "string"
         },
+        "environment": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
         "status": {
           "type": "string"
         },

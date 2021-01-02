@@ -10,6 +10,8 @@ class ApiJob {
   
   String taskName = null;
   
+  Map<String, String> environment = {};
+  
   String status = null;
   
   String error = null;
@@ -27,7 +29,7 @@ class ApiJob {
 
   @override
   String toString() {
-    return 'ApiJob[id=$id, seq=$seq, taskID=$taskID, taskName=$taskName, status=$status, error=$error, createAt=$createAt, updateAt=$updateAt, scheduleAt=$scheduleAt, elapseSeconds=$elapseSeconds, subs=$subs, ]';
+    return 'ApiJob[id=$id, seq=$seq, taskID=$taskID, taskName=$taskName, environment=$environment, status=$status, error=$error, createAt=$createAt, updateAt=$updateAt, scheduleAt=$scheduleAt, elapseSeconds=$elapseSeconds, subs=$subs, ]';
   }
 
   ApiJob.fromJson(Map<String, dynamic> json) {
@@ -36,6 +38,9 @@ class ApiJob {
     seq = json['seq'];
     taskID = json['taskID'];
     taskName = json['taskName'];
+    environment = (json['environment'] == null) ?
+      null :
+      (json['environment'] as Map).cast<String, String>();
     status = json['status'];
     error = json['error'];
     createAt = json['createAt'];
@@ -57,6 +62,8 @@ class ApiJob {
       json['taskID'] = taskID;
     if (taskName != null)
       json['taskName'] = taskName;
+    if (environment != null)
+      json['environment'] = environment;
     if (status != null)
       json['status'] = status;
     if (error != null)

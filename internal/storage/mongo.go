@@ -19,7 +19,7 @@ type Options struct {
 	Database           string
 	TaskCollection     string        `dft:"task"`
 	JobCollection      string        `dft:"job"`
-	TemplateCollection string        `dft:"template"`
+	SubTaskCollection  string        `dft:"subTask"`
 	VariableCollection string        `dft:"variable"`
 	SequenceCollection string        `dft:"sequence"`
 	Timeout            time.Duration `dft:"1s"`
@@ -49,7 +49,7 @@ func NewCICDStorageWithOptions(mongoCli *mongo.Client, options *Options) (*CICDS
 		}
 	}
 	{
-		collection := mongoCli.Database(options.Database).Collection(options.TemplateCollection)
+		collection := mongoCli.Database(options.Database).Collection(options.SubTaskCollection)
 		mongoCtx, cancel := context.WithTimeout(context.Background(), options.Timeout)
 		defer cancel()
 		if _, err := collection.Indexes().CreateMany(mongoCtx, []mongo.IndexModel{

@@ -23,13 +23,13 @@ func (s *CICDService) RunTask(ctx context.Context, req *api.RunTaskReq) (*api.Ru
 	return &api.RunTaskRes{JobID: jobID}, nil
 }
 
-func (s *CICDService) GetTemplates(ctx context.Context, req *api.GetTemplatesReq) (*api.ListTemplateRes, error) {
-	res, err := s.storage.GetTemplateByIDs(ctx, req.Ids)
+func (s *CICDService) GetSubTasks(ctx context.Context, req *api.GetSubTasksReq) (*api.ListSubTaskRes, error) {
+	res, err := s.storage.GetSubTaskByIDs(ctx, req.Ids)
 	if err != nil {
 		return nil, err
 	}
 
-	return &api.ListTemplateRes{Templates: res}, nil
+	return &api.ListSubTaskRes{SubTasks: res}, nil
 }
 
 func (s *CICDService) GetVariables(ctx context.Context, req *api.GetVariablesReq) (*api.ListVariableRes, error) {

@@ -29,7 +29,7 @@ func init() {
 	store, err := storage.NewCICDStorageWithOptions(mongoCli, &storage.Options{
 		Database:           "hatlonely",
 		TaskCollection:     "task",
-		TemplateCollection: "template",
+		SubTaskCollection:  "subTask",
 		VariableCollection: "variable",
 		JobCollection:      "job",
 		Timeout:            3 * time.Second,

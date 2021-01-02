@@ -14,23 +14,23 @@ import (
 	"github.com/hatlonely/rpc-cicd/api/gen/go/api"
 )
 
-func (s *CICDStorage) GetTemplate(ctx context.Context, id string) (*api.Template, error) {
-	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.TemplateCollection)
+func (s *CICDStorage) GetSubTask(ctx context.Context, id string) (*api.SubTask, error) {
+	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.SubTaskCollection)
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return nil, rpcx.NewError(codes.InvalidArgument, "InvalidObjectID", "object id is not valid", err)
 	}
 	mongoCtx, cancel := context.WithTimeout(ctx, s.options.Timeout)
 	defer cancel()
-	var template api.Template
-	if err := collection.FindOne(mongoCtx, bson.M{"_id": objectID}).Decode(&template); err != nil {
+	var subTask api.SubTask
+	if err := collection.FindOne(mongoCtx, bson.M{"_id": objectID}).Decode(&subTask); err != nil {
 		return nil, errors.Wrap(err, "mongo.Collection.FindOne failed")
 	}
-	return &template, nil
+	return &subTask, nil
 }
 
-func (s *CICDStorage) DelTemplate(ctx context.Context, id string) error {
-	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.TemplateCollection)
+func (s *CICDStorage) DelSubTask(ctx context.Context, id string) error {
+	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.SubTaskCollection)
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return rpcx.NewError(codes.InvalidArgument, "InvalidObjectID", "object id is not valid", err)
@@ -45,12 +45,12 @@ func (s *CICDStorage) DelTemplate(ctx context.Context, id string) error {
 	return nil
 }
 
-func (s *CICDStorage) PutTemplate(ctx context.Context, template *api.Template) (string, error) {
-	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.TemplateCollection)
+func (s *CICDStorage) PutSubTask(ctx context.Context, subTask *api.SubTask) (string, error) {
+	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.SubTaskCollection)
 	mongoCtx, cancel := context.WithTimeout(ctx, s.options.Timeout)
 	defer cancel()
-	template.CreateAt = int32(time.Now().Unix())
-	res, err := collection.InsertOne(mongoCtx, template)
+	subTask.CreateAt = int32(time.Now().Unix())
+	res, err := collection.InsertOne(mongoCtx, subTask)
 	if err != nil {
 		return "", errors.Wrap(err, "mongo.Collection.InsertOne failed")
 	}
@@ -58,21 +58,21 @@ func (s *CICDStorage) PutTemplate(ctx context.Context, template *api.Template) (
 	return res.InsertedID.(primitive.ObjectID).Hex(), nil
 }
 
-func (s *CICDStorage) UpdateTemplate(ctx context.Context, template *api.Template) error {
-	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.TemplateCollection)
-	objectID, err := primitive.ObjectIDFromHex(template.Id)
+func (s *CICDStorage) UpdateSubTask(ctx context.Context, subTask *api.SubTask) error {
+	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.SubTaskCollection)
+	objectID, err := primitive.ObjectIDFromHex(subTask.Id)
 	if err != nil {
 		return rpcx.NewError(codes.InvalidArgument, "InvalidObjectID", "object id is not valid", err)
 	}
 	mongoCtx, cancel := context.WithTimeout(ctx, s.options.Timeout)
 	defer cancel()
-	id := template.Id
-	template.Id = ""
+	id := subTask.Id
+	subTask.Id = ""
 	defer func() {
-		template.Id = id
+		subTask.Id = id
 	}()
-	template.UpdateAt = int32(time.Now().Unix())
-	res, err := collection.UpdateOne(mongoCtx, bson.M{"_id": objectID}, bson.M{"$set": template})
+	subTask.UpdateAt = int32(time.Now().Unix())
+	res, err := collection.UpdateOne(mongoCtx, bson.M{"_id": objectID}, bson.M{"$set": subTask})
 	if err != nil {
 		return errors.Wrap(err, "mongo.Collection.UpdateOne failed")
 	}
@@ -80,8 +80,8 @@ func (s *CICDStorage) UpdateTemplate(ctx context.Context, template *api.Template
 	return nil
 }
 
-func (s *CICDStorage) ListTemplate(ctx context.Context, offset int64, limit int64) ([]*api.Template, error) {
-	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.TemplateCollection)
+func (s *CICDStorage) ListSubTask(ctx context.Context, offset int64, limit int64) ([]*api.SubTask, error) {
+	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.SubTaskCollection)
 	mongoCtx, cancel := context.WithTimeout(ctx, s.options.Timeout)
 	defer cancel()
 	res, err := collection.Find(mongoCtx, bson.M{}, mopt.Find().SetLimit(limit).SetSkip(offset))
@@ -89,19 +89,19 @@ func (s *CICDStorage) ListTemplate(ctx context.Context, offset int64, limit int6
 		return nil, errors.Wrap(err, "mongo.Collection.Find failed")
 	}
 	defer res.Close(ctx)
-	var templates []*api.Template
-	if err := res.All(mongoCtx, &templates); err != nil {
+	var subTasks []*api.SubTask
+	if err := res.All(mongoCtx, &subTasks); err != nil {
 		return nil, errors.Wrap(err, "mongo.Collection.Find.All failed")
 	}
-	return templates, nil
+	return subTasks, nil
 }
 
-func (s *CICDStorage) GetTemplateByIDs(ctx context.Context, ids []string) ([]*api.Template, error) {
+func (s *CICDStorage) GetSubTaskByIDs(ctx context.Context, ids []string) ([]*api.SubTask, error) {
 	if len(ids) == 0 {
 		return nil, nil
 	}
 
-	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.TemplateCollection)
+	collection := s.mongoCli.Database(s.options.Database).Collection(s.options.SubTaskCollection)
 
 	var objectIDs []primitive.ObjectID
 	for _, i := range ids {
@@ -118,10 +118,10 @@ func (s *CICDStorage) GetTemplateByIDs(ctx context.Context, ids []string) ([]*ap
 	if err != nil {
 		return nil, errors.Wrap(err, "mongo.Collection.Find failed")
 	}
-	var templates []*api.Template
-	if err := res.All(mongoCtx, &templates); err != nil {
+	var subTasks []*api.SubTask
+	if err := res.All(mongoCtx, &subTasks); err != nil {
 		return nil, errors.Wrap(err, "mongo.Collection.Find.All failed")
 	}
 
-	return templates, nil
+	return subTasks, nil
 }

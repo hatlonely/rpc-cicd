@@ -176,15 +176,15 @@ func (e *CICDExecutor) runSubTasks(ctx context.Context, job *api.Job, task *api.
 	if err != nil {
 		return errors.Wrap(err, "GetVariables failed")
 	}
-	templates, err := e.storage.GetTemplateByIDs(ctx, task.TemplateIDs)
+	templates, err := e.storage.GetSubTaskByIDs(ctx, task.SubTaskIDs)
 	if err != nil {
-		return errors.Wrap(err, "GetTemplates failed")
+		return errors.Wrap(err, "GetSubTasks failed")
 	}
-	m := map[string]*api.Template{}
+	m := map[string]*api.SubTask{}
 	for _, t := range templates {
 		m[t.Id] = t
 	}
-	for i, tid := range task.TemplateIDs {
+	for i, tid := range task.SubTaskIDs {
 		templates[i] = m[tid]
 	}
 
@@ -194,18 +194,18 @@ func (e *CICDExecutor) runSubTasks(ctx context.Context, job *api.Job, task *api.
 	}
 
 	for _, i := range templates {
-		str, err := mustache.Render(i.ScriptTemplate.Script, kvs)
+		str, err := mustache.Render(i.ScriptSubTask.Script, kvs)
 		if err != nil {
 			return errors.Wrapf(err, "mustache.Render failed. template: [%v]", i.Name)
 		}
 
 		job.Subs = append(job.Subs, &api.Job_Sub{
-			TemplateID:   i.Id,
-			TemplateName: i.Name,
-			Language:     i.ScriptTemplate.Language,
-			Script:       str,
-			Status:       storage.JobStatusWaiting,
-			UpdateAt:     int32(time.Now().Unix()),
+			SubTaskID:   i.Id,
+			SubTaskName: i.Name,
+			Language:    i.ScriptSubTask.Language,
+			Script:      str,
+			Status:      storage.JobStatusWaiting,
+			UpdateAt:    int32(time.Now().Unix()),
 		})
 	}
 
@@ -226,7 +226,7 @@ func (e *CICDExecutor) runSubTasks(ctx context.Context, job *api.Job, task *api.
 		now := time.Now()
 		exitCode, stdout, stderr, err := Exec(sub.Language, sub.Script, fmt.Sprintf("%v/%v/%v", e.options.Data, job.TaskName, job.Seq))
 		if err != nil {
-			return errors.Wrapf(err, "exec [%v] failed", sub.TemplateName)
+			return errors.Wrapf(err, "exec [%v] failed", sub.SubTaskName)
 		}
 
 		sub.Status = storage.JobStatusFailed
